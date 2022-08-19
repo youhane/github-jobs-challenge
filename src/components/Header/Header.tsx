@@ -2,7 +2,7 @@ import { Wrapper } from './Header.styles'
 
 function Header() {
   return (
-    <Wrapper><span>Github</span> Jobs</Wrapper>
+    <Wrapper><h1>Github <span>Jobs</span></h1></Wrapper>
   )
 }
 
