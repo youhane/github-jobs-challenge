@@ -1,18 +1,22 @@
 import React from 'react'
 import Options from '../Options/Options'
-import { Wrapper } from './Filter.styles'
+import { LocationSearch, Wrapper } from './Filter.styles'
+import { IoEarthSharp } from 'react-icons/io5'
 
 function Filter() {
-  return (
-    <Wrapper>
-        <Options/>
-        <div>
-            <label htmlFor="location">Location</label>
-            <input type="text" name='location' id='location' />
-        </div>
-        <Options/>
-    </Wrapper>
-  )
+    return (
+        <Wrapper>
+            <Options type='checkbox' text='Full time' />
+            <LocationSearch>
+                <label htmlFor="location">LOCATION</label>
+                <div>
+                    <IoEarthSharp />
+                    <input type="text" name='location' id='location' placeholder='City, state, zip code or country' />
+                </div>
+            </LocationSearch>
+            <Options text='London' />
+        </Wrapper>
+    )
 }
 
 export default Filter
