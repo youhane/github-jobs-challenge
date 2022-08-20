@@ -9,7 +9,8 @@ import { Content, Jobs, Wrapper } from './MainPage.styles'
 interface JobProps {
   company_name: string,
   title: string,
-  types: string[],
+  job_types: string[],
+  tags: string[]
   location: string,
   created_at: string,
 }
@@ -29,7 +30,8 @@ function MainPage() {
             key={index}
               company={job.company_name}
               role={job.title}
-              type={job.types}
+              type={job.job_types}
+              tags={job.tags}
               location={job.location}
               posted={job.created_at}
             />
