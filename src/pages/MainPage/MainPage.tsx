@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { JobContext } from '../../components/Context/JobContext'
 import Filter from '../../components/Filter/Filter'
-import Header from '../../components/Header/Header'
 import Job from '../../components/Job/Job'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import { Content, Jobs, Wrapper } from './MainPage.styles'
@@ -24,14 +23,13 @@ function MainPage() {
 
   return (
     <Wrapper>
-      <Header />
       <SearchBar />
       <Content>
         <Filter />
         <Jobs>
-          {jobs?.slice(from, to).map((job: JobProps, index:any) => {
+          {jobs?.slice(from, to).map((job: JobProps, index: any) => {
             return <Job
-            key={index}
+              key={index}
               company={job.company_name}
               role={job.title}
               type={job.job_types}

@@ -10,6 +10,7 @@ export const Wrapper = styled.span`
     width: min-content;
     padding: .75rem;
     transition: all .2s ease-in-out;
+    min-width: fit-content;
 
     :hover{
         color: ${COLORS.bgWhite};

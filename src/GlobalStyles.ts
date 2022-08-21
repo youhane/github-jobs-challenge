@@ -10,5 +10,9 @@ export const GlobalStyles = createGlobalStyle`
 
     section{
         margin: 0 10rem;
+
+        @media (max-width: 768px) {
+            margin: 0;
+        }
     }
 `

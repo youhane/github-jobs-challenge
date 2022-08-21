@@ -19,6 +19,12 @@ export const Wrapper = styled.div`
         background: ${COLORS.innerWhite};
         margin: 0;
     }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100vw;
+    }
 `
 
 export const Content = styled.div`
@@ -47,6 +53,7 @@ export const MoreInfo = styled.div`
 
 export const JobTags = styled.div`
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: .75rem;
 `
