@@ -1,4 +1,5 @@
 import React from 'react'
+import {useNavigate} from 'react-router-dom'
 import { Content, JobTags, MoreInfo, Wrapper } from './Job.styles'
 import { IoEarthSharp } from 'react-icons/io5'
 import { BiTimeFive } from 'react-icons/bi'
@@ -11,11 +12,15 @@ interface JobProps {
     tags: string[],
     location: string,
     posted: string,
+    slug: string,
+    description: string,
 }
 
-function Job({ company, role, type, tags, location, posted }: JobProps) {
+function Job({ company, role, type, tags, location, posted, slug, description }: JobProps) {
+    const navigate = useNavigate();
+
     return (
-        <Wrapper>
+        <Wrapper onClick={() => navigate(`/${slug}`, {state: { company, role, type, tags, location, posted, description}})}>
             <Content>
                 <h5>{company}</h5>
                 <h3>{role}</h3>

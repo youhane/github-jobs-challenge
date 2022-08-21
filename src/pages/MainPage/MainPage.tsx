@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { JobContext } from '../../components/Context/JobContext'
 import Filter from '../../components/Filter/Filter'
 import Header from '../../components/Header/Header'
@@ -13,10 +13,14 @@ interface JobProps {
   tags: string[]
   location: string,
   created_at: string,
+  slug: string,
+  description: string,
 }
 
 function MainPage() {
   const { jobs } = useContext(JobContext);
+  const [from, setFrom] = useState(0);
+  const [to, setTo] = useState(20)
 
   return (
     <Wrapper>
@@ -25,7 +29,7 @@ function MainPage() {
       <Content>
         <Filter />
         <Jobs>
-          {jobs?.map((job: JobProps, index:any) => {
+          {jobs?.slice(from, to).map((job: JobProps, index:any) => {
             return <Job
             key={index}
               company={job.company_name}
@@ -34,6 +38,8 @@ function MainPage() {
               tags={job.tags}
               location={job.location}
               posted={job.created_at}
+              slug={job.slug}
+              description={job.description}
             />
           })}
         </Jobs>

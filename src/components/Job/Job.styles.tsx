@@ -8,6 +8,12 @@ export const Wrapper = styled.div`
     margin: 1rem 0;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
+    transition: .2s all ease-in-out;
+
+    :hover{
+        box-shadow: 0px 2px 5px 5px #0000000D;
+    }
     
     *{
         background: ${COLORS.innerWhite};
@@ -22,6 +28,7 @@ export const Content = styled.div`
     
     h3{
         font-weight: 500;
+        margin: .75rem 0;
     }
 `
 

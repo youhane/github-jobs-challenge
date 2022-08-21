@@ -8,7 +8,7 @@ export const JobProvider = (props: any) => {
 
     useEffect(() => {
         fetch(BASE_URL).then(res => res.json())
-            .then(data => setJobs(data.data))
+            .then(data => {console.log(data.data); setJobs(data.data)})
     }, [])
 
     return (
