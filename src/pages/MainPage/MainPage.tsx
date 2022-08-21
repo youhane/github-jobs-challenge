@@ -3,7 +3,8 @@ import { JobContext } from '../../components/Context/JobContext'
 import Filter from '../../components/Filter/Filter'
 import Job from '../../components/Job/Job'
 import SearchBar from '../../components/SearchBar/SearchBar'
-import { Content, Jobs, Wrapper } from './MainPage.styles'
+import { Content, Jobs, Paginate, Wrapper } from './MainPage.styles'
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
 interface JobProps {
   company_name: string,
@@ -19,7 +20,17 @@ interface JobProps {
 function MainPage() {
   const { jobs } = useContext(JobContext);
   const [from, setFrom] = useState(0);
-  const [to, setTo] = useState(20)
+  const [to, setTo] = useState(10)
+
+  const nextPage = () => {
+    setFrom(from + 10)
+    setTo(to + 10)
+  }
+
+  const prevPage = () => {
+    setFrom(from - 10)
+    setTo(to - 10)
+  }
 
   return (
     <Wrapper>
@@ -40,6 +51,10 @@ function MainPage() {
               description={job.description}
             />
           })}
+          <Paginate>
+            {from > 0 && <button onClick={() => prevPage()}><IoIosArrowBack /></button>}
+            {to !== 100 && <button onClick={() => nextPage()}><IoIosArrowForward /></button>}
+          </Paginate>
         </Jobs>
       </Content>
     </Wrapper>

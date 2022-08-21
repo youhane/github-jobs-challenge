@@ -10,8 +10,6 @@ function ContentPage() {
     const { state }: any = useLocation()
     const navigate = useNavigate()
 
-    console.log(state)
-
     return (
         <Wrapper>
             <Content>

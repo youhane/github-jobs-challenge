@@ -18,3 +18,19 @@ export const Content = styled.div`
 
 export const Jobs = styled.div`
 `
+
+export const Paginate = styled.div`
+    display: flex;
+    justify-content: space-between;
+
+    *{
+        display: flex;
+        align-items: center;
+        padding: .25rem;
+        transition: .3s all;
+    }
+
+    button:hover{
+        box-shadow: 0 0 0 1px ${COLORS.textBlack};
+    }
+`

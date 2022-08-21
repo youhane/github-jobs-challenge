@@ -1,4 +1,3 @@
-import React from 'react'
 import Options from '../Options/Options'
 import { LocationSearch, Wrapper } from './Filter.styles'
 import { IoEarthSharp } from 'react-icons/io5'
@@ -14,7 +13,6 @@ function Filter() {
                     <input type="text" name='location' id='location' placeholder='City, state, zip code or country' />
                 </div>
             </LocationSearch>
-            <Options text='London' />
         </Wrapper>
     )
 }
