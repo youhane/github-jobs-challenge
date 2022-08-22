@@ -20,6 +20,10 @@ export const Wrapper = styled.nav`
             border: none;
             width: 50vw;
             margin-left: 1rem;
+
+            :focus{
+                outline: none;
+            }
         }
 
         button{

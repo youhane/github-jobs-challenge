@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { JobContext } from '../../components/Context/JobContext'
 import Filter from '../../components/Filter/Filter'
 import Job from '../../components/Job/Job'
@@ -21,6 +21,10 @@ function MainPage() {
   const { jobs } = useContext(JobContext);
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(10)
+  const [searchAll, setSearchAll] = useState("")
+  const [location, setLocation] = useState("")
+  const [types, setTypes] = useState([])
+  const [currentJobs, setcurrentJobs] = useState([])
 
   const nextPage = () => {
     setFrom(from + 10)
@@ -32,13 +36,30 @@ function MainPage() {
     setTo(to - 10)
   }
 
+  useEffect(() => {
+    setcurrentJobs(jobs.slice(from, to))
+    const filteredJobs = jobs.filter((job: { title: string; company_name: string; location: string; description: string; tags: any[] }) => {
+      return job.title.toLowerCase().includes(searchAll.toLowerCase()) ||
+        job.company_name.toLowerCase().includes(searchAll.toLowerCase()) ||
+        job.location.toLowerCase().includes(searchAll.toLowerCase()) ||
+        job.description.toLowerCase().includes(searchAll.toLowerCase()) ||
+        job.tags.some(tag => tag.toLowerCase().includes(searchAll.toLowerCase()))
+    }).filter((job: { job_types: string | never[] }) => {
+      return types.every(type => job.job_types.includes(type))
+    }).filter((job: { location: string }) => {
+      return job.location.toLowerCase().includes(location.toLowerCase())
+    })
+    setcurrentJobs(filteredJobs.slice(from, to))
+  }, [from, jobs, location, searchAll, to, types])
+
+
   return (
     <Wrapper>
-      <SearchBar />
+      <SearchBar setSearchAll={setSearchAll} searchAll={searchAll} />
       <Content>
-        <Filter />
+        <Filter setLocation={setLocation} location={location} setTypes={setTypes} types={types} />
         <Jobs>
-          {jobs?.slice(from, to).map((job: JobProps, index: any) => {
+          {currentJobs.map((job: JobProps, index: any) => {
             return <Job
               key={index}
               company={job.company_name}
